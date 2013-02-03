@@ -1,0 +1,9 @@
+#wrap {
+  margin: 0 auto;
+  width: 800px;
+}
+
+canvas {
+  margin: 0 auto; 
+  text-align: center;  
+}
