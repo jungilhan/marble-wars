@@ -102,7 +102,7 @@ define(['config', 'lib/collie'], function(Config) {
 
     var textLeft = new collie.Text({
       width : 210,
-      height : 20,
+      height : 30,
       x : 80,
       y : 80,
       fontColor : '#000000',
@@ -113,7 +113,7 @@ define(['config', 'lib/collie'], function(Config) {
 
     var textCenter = new collie.Text({
       width : 210,
-      height : 20,
+      height : 30,
       x : left.get('x') + left.get('width') + 5,
       y : 80,
       fontColor : '#000000',
@@ -124,7 +124,7 @@ define(['config', 'lib/collie'], function(Config) {
 
     var textRight = new collie.Text({
       width : 210,
-      height : 20,
+      height : 30,
       x: center.get('x') + center.get('width') + 5,
       y: 80,
       fontColor : '#000000',
