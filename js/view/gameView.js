@@ -165,7 +165,7 @@ define(['config', 'lib/collie'], function(Config) {
       y: 0,
       width: width_,
       height: height_,
-      backgroundImage: 'gameDim',
+      backgroundImage: 'dimBackground',
       visible: false
     }).addTo(layer);
 

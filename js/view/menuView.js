@@ -40,7 +40,7 @@ define(['config', 'lib/collie'], function(Config) {
    */
   function addDisplayObjects_(layer, params) {
     new collie.DisplayObject({
-      backgroundImage: 'menuBackground'
+      backgroundImage: 'background'
     }).addTo(layer);
 
     var title = new collie.DisplayObject({
@@ -89,13 +89,62 @@ define(['config', 'lib/collie'], function(Config) {
       backgroundImage: 'menuHardLock'
     }).addTo(layer);
 
+    var dim = new collie.DisplayObject({
+      x: 0,
+      y: 0,
+      width: width_,
+      height: height_,
+      backgroundImage: 'dimBackground',
+      visible: false
+    }).addTo(layer);
+
+    var rulePopups = [];
+    for (var i = 0; i < 3; i++) {
+      var popup = new collie.DisplayObject({
+        x: (width_ - 554) / 2,
+        y: (height_ - 433) / 2,
+        backgroundImage: 'menuRule' + (i + 1),
+        visible: false
+      }).addTo(layer);
+
+      var close = new collie.Rectangle({
+        x: 490,
+        y: 10,
+        width: 60,
+        height: 60,
+        strokeColor: 'white',
+        strokeWidth: 0,
+        visible: false
+      }).addTo(popup);
+
+      var next = new collie.Rectangle({
+        x: 554 / 2 - 50,
+        y: 370,
+        width: 100,
+        height: 50,
+        strokeColor: 'white',
+        strokeWidth: 0,
+        visible: false
+      }).addTo(popup);
+
+      popup.set({
+        index: i,
+        close: close,
+        next: next
+      });
+
+      rulePopups.push(popup);
+    }
+
     return {
       rule: rule,
       settings: settings,
       scrollArea: scrollArea,
       easy: easy,
       normal: normal,
-      hard: hard
+      hard: hard,
+      dim: dim,
+      rulePopups: rulePopups
     };
   }
 
@@ -107,8 +156,27 @@ define(['config', 'lib/collie'], function(Config) {
     displayObjects.rule.attach({
       click: function(e) {
         console.log('rule clicked');
+        showRulePopup_(displayObjects, 0);
       }
     });
+
+    var length = displayObjects.rulePopups.length;
+    for (var i = 0; i < length; i++) {
+      var close = displayObjects.rulePopups[i].get('close');
+      close.attach({
+        click: function(e) {
+          hideAllRulePopups_(displayObjects);
+        }
+      })
+
+      var next = displayObjects.rulePopups[i].get('next');
+      next.attach({
+        click: function(e) {
+          nextRule_(displayObjects, e.displayObject.getParent().get('index'));
+        }
+      });
+
+    }
 
     displayObjects.settings.attach({
       click: function(e) {
@@ -150,6 +218,81 @@ define(['config', 'lib/collie'], function(Config) {
         }
       }
     });
+
+    displayObjects.dim.attach({
+      click: function(e) {
+        // Dim 아래에 있는 객체에 클릭 이벤트가 전달되지 않도록 Dim에서 클릭 이벤트를 소진한다.
+      }
+    })
+  }
+
+  /** 
+   * 게임 방법을 설명하는 팝업을 띄운다.
+   * @param {Object} displayObjects 화면에 보여지는 객체 집합
+   * @param {Object} index 인덱스 (게임 방법에 총 3개의 팝업을 사용하고 있음)
+   */
+  function showRulePopup_(displayObjects, index) {
+    displayObjects.dim.set({visible: true});
+
+    var length = displayObjects.rulePopups.length;
+    for (var i = 0; i < length; i++) {
+      if (i == index) {
+        displayObjects.rulePopups[i].set({visible: true});    
+        displayObjects.rulePopups[i].get('close').set({visible: true});    
+        displayObjects.rulePopups[i].get('next').set({visible: true});    
+      } else {
+        displayObjects.rulePopups[i].set({visible: false});  
+        displayObjects.rulePopups[i].get('close').set({visible: false});    
+        displayObjects.rulePopups[i].get('next').set({visible: false});    
+      }      
+    }    
+  }
+
+  /** 
+   * 게임 방법 팝업의 다음 인덱스에 해당하는 팝업을 띄운다.
+   * @param {Object} displayObjects 화면에 보여지는 객체 집합
+   * @param {Object} index 현재 띄워진 게임 팝업 인덱스
+   */
+  function nextRule_(displayObjects, current) {  
+    var length = displayObjects.rulePopups.length;
+    for (var i = 0; i < length; i++) {
+      if (i == current) {
+        var next;
+        if (i == length - 1) {
+          next = 0;
+        } else {
+          next = i + 1;
+        }
+
+        console.log('hide: ' + i + ' show: ' + next);
+        showRulePopup_(displayObjects, next);
+        break;
+      }
+    }    
+
+  }
+
+  /** 
+   * 모든 게임 방법 팝업을 닫는다.
+   * @param {Object} displayObjects 화면에 보여지는 객체 집합
+   */
+  function hideAllRulePopups_(displayObjects) {
+    displayObjects.dim.set({visible: false});
+
+    var length = displayObjects.rulePopups.length;
+    for (var i = 0; i < length; i++) {
+      hideRulePopup_(displayObjects.rulePopups[i]);
+    }
+  } 
+
+  /** 
+   * 게임 방법 팝업을 닫는다.
+   * @param {Object} rulePopup 닫을 팝업 객체
+   */
+  function hideRulePopup_(rulePopup) {
+    rulePopup.set({visible: false});
+    rulePopup.get('close').set({visible: false});    
+    rulePopup.get('next').set({visible: false});      
   }
 
   /** 

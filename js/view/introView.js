@@ -37,7 +37,7 @@ define(['config', 'lib/collie'], function(Config) {
    */
   function addDisplayObjects_(layer) {
     new collie.DisplayObject({
-      backgroundImage: 'introBackground'
+      backgroundImage: 'background'
     }).addTo(layer);
 
     new collie.DisplayObject({

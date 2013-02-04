@@ -12,15 +12,17 @@ define(['controller/intro', 'lib/collie'], function(Intro) {
   function prepareResource_() {
     console.time('prepareResource_()');
     collie.ImageManager.add({
+      // 공통 
+      background: 'img/background.png',
+      dimBackground: 'img/dim.png',
+
       // 인트로
-      introBackground: 'img/background.png',
       introCopyright: 'img/copyright.png',
       introTitle: 'img/intro-title.png',
       introMarbleSmall: 'img/marble-small.png',
       introMarbleLarge: 'img/marble-large.png',
 
       // 메뉴
-      menuBackground: 'img/background.png',
       menuTitle: 'img/title.png',
       menuRule: 'img/game-rule.png',
       menuSettings: 'img/settings.png',  
@@ -29,6 +31,9 @@ define(['controller/intro', 'lib/collie'], function(Intro) {
       menuNormal: 'img/menu-normal.png',
       menuNormalLock: 'img/menu-normal-lock.png',
       menuHardLock: 'img/menu-hard-lock.png',
+      menuRule1: 'img/rule1.png',
+      menuRule2: 'img/rule2.png',
+      menuRule3: 'img/rule3.png',
 
       // 세부 메뉴 
       stageBackground: 'img/mini-background.png',
@@ -61,7 +66,6 @@ define(['controller/intro', 'lib/collie'], function(Intro) {
       gameNextStage: 'img/next-stage.png',
       gameWinPopupAgain: 'img/again-small.png',
       gameLosePopupAgain: 'img/again-big.png',
-      gameDim: 'img/dim.png',
 
     }, function () {
       console.timeEnd('prepareResource_()');
