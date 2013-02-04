@@ -19,8 +19,6 @@ define(['config', 'lib/collie'], function(Config) {
    * @param {Object} parmas 옵션 정보
    */
   function init_(params) {
-    prepareResource_(params);
-
     var layer = new collie.Layer({
       width: width_,
       height: height_
@@ -32,23 +30,6 @@ define(['config', 'lib/collie'], function(Config) {
     collie.Renderer.addLayer(layer);
     collie.Renderer.load(document.getElementById('menu'));
     collie.Renderer.start();
-  }
-
-  /** 
-   * 이미지 리소스 등록.
-   */
-  function prepareResource_() {
-    collie.ImageManager.add({
-      menuBackground: 'img/background.png',
-      menuTitle: 'img/title.png',
-      menuRule: 'img/game-rule.png',
-      menuSettings: 'img/settings.png',  
-      menuScrollArea: 'img/scroll-area.png',
-      menuEasy: 'img/menu-easy.png',
-      menuNormal: 'img/menu-normal.png',
-      menuNormalLock: 'img/menu-normal-lock.png',
-      menuHardLock: 'img/menu-hard-lock.png'
-    });
   }
 
   /** 

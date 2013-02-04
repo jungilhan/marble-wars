@@ -1,3 +1,3 @@
-require(['controller/intro'], function(Intro) {
-  Intro.start();
+require(['controller/application'], function(Application) {
+  Application.start();
 });

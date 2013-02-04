@@ -17,8 +17,6 @@ define(['config', 'lib/collie'], function(Config) {
    * 초기화 함수.
    */
   function init_() {
-    prepareResource_();
-
     var layer = new collie.Layer({
       width: width_,
       height: height_
@@ -30,19 +28,6 @@ define(['config', 'lib/collie'], function(Config) {
     collie.Renderer.addLayer(layer);
     collie.Renderer.load(document.getElementById('intro'));
     collie.Renderer.start();
-  }
-
-  /** 
-   * 이미지 리소스 등록.
-   */
-  function prepareResource_() {
-    collie.ImageManager.add({
-      introBackground: 'img/background.png',
-      introCopyright: 'img/copyright.png',
-      introTitle: 'img/intro-title.png',
-      introMarbleSmall: 'img/marble-small.png',
-      introMarbleLarge: 'img/marble-large.png'        
-    });
   }
 
   /** 

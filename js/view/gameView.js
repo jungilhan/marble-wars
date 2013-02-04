@@ -21,8 +21,6 @@ define(['config', 'lib/collie'], function(Config) {
    * @param {Object} parmas 옵션 정보
    */
   function init_(params) {
-    prepareResource_();
-
     console.log(params.marbles);
 
     var layer = new collie.Layer({
@@ -39,27 +37,6 @@ define(['config', 'lib/collie'], function(Config) {
     collie.Renderer.addLayer(layer);
     collie.Renderer.load(document.getElementById('game'));
     collie.Renderer.start();
-  }
-
-  /** 
-   * 이미지 리소스 등록.
-   */
-  function prepareResource_() {
-    collie.ImageManager.add({
-      gameBackground: 'img/game-background2.png',
-      gameMarble: 'img/marble.png',
-      gameGoNormal: 'img/go.png',
-      gameGoDown: 'img/go-down.png',
-      gameAgain: 'img/regame.png',
-      gameEasy: 'img/game-easy.png',
-      gameNormal: 'img/game-normal.png',
-      gameWinPopupBg: 'img/win-back.png',
-      gameLosePopupBg: 'img/lose-back.png',
-      gameNextStage: 'img/next-stage.png',
-      gameWinPopupAgain: 'img/again-small.png',
-      gameLosePopupAgain: 'img/again-big.png',
-      gameDim: 'img/dim.png',
-    });
   }
 
   /** 

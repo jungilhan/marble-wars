@@ -20,8 +20,6 @@ define(['config', 'lib/collie'], function(Config) {
    * 초기화 함수.
    */
   function init_() {
-    prepareResource_();
-
     var layer = new collie.Layer({
       width: width_,
       height: height_
@@ -33,30 +31,6 @@ define(['config', 'lib/collie'], function(Config) {
     collie.Renderer.addLayer(layer);
     collie.Renderer.load(document.getElementById('stage'));
     collie.Renderer.start();
-  }
-
-  /** 
-   * 이미지 리소스 등록.
-   */
-  function prepareResource_() {
-    collie.ImageManager.add({
-      stageBackground: 'img/mini-background.png',
-      stageEasy: 'img/mini-easy.png',
-      stageNormal: 'img/mini-normal.png',
-      stageHard: 'img/mini-hard.png',
-      stage: 'img/stage-back.png',
-      stage0: 'img/0.png',
-      stage1: 'img/1.png',
-      stage2: 'img/2.png',
-      stage3: 'img/3.png',
-      stage4: 'img/4.png',
-      stage5: 'img/5.png',
-      stage6: 'img/6.png',
-      stage7: 'img/7.png',
-      stage8: 'img/8.png',
-      stage9: 'img/9.png',
-      stageLock: 'img/stage-lock.png'
-    });
   }
 
   /** 
