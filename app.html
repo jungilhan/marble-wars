@@ -9,12 +9,12 @@
 
     <style>
       body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 0px; /* 60px to make the container go all the way to the bottom of the topbar */
       }      
     </style>
   </head>
   <body>
-    <div class='navbar navbar-fixed-top'>
+    <div class='navbar navbar-static-top'>
       <div class='navbar-inner'>
         <div class='container'>
           <a class='brand' href='#'>Marble War</a>
@@ -22,12 +22,13 @@
       </div>
     </div>
 
-    <div id='wrap' class='container'>
-      <div id='intro'></div>
-      <div id='menu'></div>
-      <div id='stage'></div>
-      <div id='game'></div>
-      <br>
+    <div class='container'>
+      <div id='wrap'>
+        <div id='intro' class='canvas-wrap'></div>
+        <div id='menu' class='canvas-wrap'></div>
+        <div id='stage' class='canvas-wrap'></div>
+        <div id='game' class='canvas-wrap'></div>
+      </div>
       <footer>
         <p class='pull-right'>&copy; BULGOGI STUDIO 2012</p>
       </footer>

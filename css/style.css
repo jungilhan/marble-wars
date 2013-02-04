@@ -1,9 +1,13 @@
 #wrap {
   margin: 0 auto;
-  width: 800px;
+  width: 990px;
+  height: 660px;
+  background-image: url('../img/ipad.jpg');
+  background-repeat: no-repeat;
 }
 
-canvas {
-  margin: 0 auto; 
-  text-align: center;  
+.canvas-wrap {
+  position: absolute;
+  margin-top: 90px;
+  margin-left: 95px;
 }
