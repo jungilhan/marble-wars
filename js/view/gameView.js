@@ -265,6 +265,7 @@ define(['config', 'lib/collie'], function(Config) {
     var minY = marbleHeight;
     var maxY = heaps[0].rectangle.get('height') - marbleHeight;
 
+    marbles = shuffle(marbles);
     for (var i = 0; i < heaps.length; i++) {
       for (var j = 0; j < marbles[i]; j++) {
         var marble = createMarble_(getRandomInt_(minX, maxX), getRandomInt_(minY, maxY));
@@ -738,6 +739,25 @@ define(['config', 'lib/collie'], function(Config) {
   function getRandomInt_(lower, upper) {
     return Math.floor(lower + (Math.random() * (upper - lower + 1)));
   }
+
+  /** 
+   * Array의 요소를 랜덤하게 섞는다. 
+   * @param {Number} array 원본 
+   * @return {Number} array 섞인 array
+   */
+  var shuffle = function(array) {
+    var tmp, current, top = array.length;
+
+    if (top) while(--top) {
+          current = Math.floor(Math.random() * (top + 1));
+          tmp = array[current];
+          array[current] = array[top];
+          array[top] = tmp;
+    }
+
+    return array;
+  };
+
 
   /** 
    * 객체에 대한 모든 이벤트를 해지한다.
