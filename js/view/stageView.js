@@ -87,7 +87,7 @@ define(['config', 'lib/collie'], function(Config) {
     }
 
     // 두번째 행
-    for (var i = 0; i < 6; i++) {
+    for (var i = 0; i < 9; i++) {
       var stage = new collie.DisplayObject({
         x: 40 + (77 * i) + 10,
         y: 110 + 89,
@@ -113,15 +113,112 @@ define(['config', 'lib/collie'], function(Config) {
       }).addTo(stage);
 
       stages.push(stage);
+    }
+
+    var maxLength = 9;
+    if (params_.mode == 'easy') {
+      maxLength = 7;
+    } 
+
+    // 세번째 행
+    for (var i = 0; i < maxLength; i++) {
+      var stage = new collie.DisplayObject({
+        x: 40 + (77 * i) + 10,
+        y: 110 + 89 + 89,
+        backgroundImage: 'stage'
+      }).addTo(layer);      
+
+      var j;
+      switch (i) {
+        case 0:  j = 1;  break;
+        default: j = 2; break;
+      }
+
+      new collie.DisplayObject({
+        x: 17,
+        y: 20,
+        backgroundImage: 'stage' + j
+      }).addTo(stage);
+
+      var k;
+      switch (i) {
+        case 0: k = 9; break;
+        case 1: k = 0; break;
+        default: k = i - 1; break;
+      }
+
+      new collie.DisplayObject({
+        x: 37,
+        y: 20,
+        backgroundImage: 'stage' + k
+      }).addTo(stage);
+
+      new collie.DisplayObject({
+        x: 26,
+        y: 20,
+        backgroundImage: 'stageLock'
+      }).addTo(stage);
+
+      stages.push(stage);
+    }    
+
+    var maxLength = 3;
+    if (params_.mode == 'easy') {
+      maxLength = 0;
+    } 
+
+    // 네번째 행
+    for (var i = 0; i < maxLength; i++) {
+      var stage = new collie.DisplayObject({
+        x: 40 + (77 * i) + 10,
+        y: 110 + 89 + 89 + 89,
+        backgroundImage: 'stage'
+      }).addTo(layer);      
+
+      var j;
+      switch (i) {
+        case 0:  
+        case 1: j = 2; break;
+        case 2: j = 3; break;
+      }
+
+      new collie.DisplayObject({
+        x: 17,
+        y: 20,
+        backgroundImage: 'stage' + j
+      }).addTo(stage);
+
+      var k;
+      switch (i) {
+        case 0: k = 8; break;
+        case 1: k = 9; break;
+        case 2: k = 0; break;
+      }
+
+      new collie.DisplayObject({
+        x: 37,
+        y: 20,
+        backgroundImage: 'stage' + k
+      }).addTo(stage);
+
+      new collie.DisplayObject({
+        x: 26,
+        y: 20,
+        backgroundImage: 'stageLock'
+      }).addTo(stage);
+
+      stages.push(stage);
     }    
 
     // 자물쇠 제거
     var highestStage = params_.highestStage;
-    console.log('highestStage: ' + highestStage);
+    console.log('highestStage: ' + highestStage + ', stages.length: ' + stages.length);
     for (var i = 0; i < highestStage; i++) {
-      var length = stages[i].getChildren().length;
-      var child = stages[i].getChildren()[length - 1];
-      child.set({visible: false});
+      if (i < stages.length) {
+        var length = stages[i].getChildren().length;
+        var child = stages[i].getChildren()[length - 1];
+        child.set({visible: false});
+      }      
     }
 
     // 자물쇠만 표시
@@ -132,19 +229,22 @@ define(['config', 'lib/collie'], function(Config) {
       }
     }
 
-    // 최고 난이도가 normal인 경우, easy의 모든 stage를 unlock처리
+    // 최고 난이도가 normal인 경우, easy의 모든 stage를 unlock처리 또는
+    // 최고 난이도가 hard인 경우, easy, noraml의 stage를 unlock처리
     var highestMode = params_.highestMode;
-    if (params_.mode == 'easy' && highestMode == 'normal') {
+    if (params_.mode == 'easy' && (highestMode == 'normal' || highestMode == 'hard')
+      || params_.mode == 'normal' && highestMode == 'hard') {
       for (var i = 0; i < stages.length; i++) {
         var length = stages[i].getChildren().length;
-        var child = stages[i].getChildren()[length - 1];
-        child.set({visible: false});
+        var lock = stages[i].getChildren()[length - 1];
+        lock.set({visible: false});
       }
 
       for (var i = 0; i < stages.length; i++) {
         var length = stages[i].getChildren().length;
         for (var j = 0; j < length - 1; j++) {
-          stages[i].getChildren()[j].set({visible: true});
+          var number = stages[i].getChildren()[j];
+          number.set({visible: true});
         }
       }
     }

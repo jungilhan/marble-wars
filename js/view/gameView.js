@@ -137,7 +137,10 @@ define(['config', 'lib/collie'], function(Config) {
     var gameMode = 'gameEasy';
     if (params.mode == 'normal') {
       gameMode = 'gameNormal';
+    } else if (params.mode == 'hard') {
+      gameMode = 'gameHard';
     }
+
     var mode = new collie.DisplayObject({
       x: 10,
       y: 0,
@@ -152,7 +155,7 @@ define(['config', 'lib/collie'], function(Config) {
       fontColor : '#FFF',
       fontSize: 20,
       textAlign: 'center'
-    }).text(params.stage + '/15').addTo(layer);
+    }).text(params.stage + '/' + params.totalStage).addTo(layer);
 
     var again = new collie.DisplayObject({
       x: right.get('x') + 5,

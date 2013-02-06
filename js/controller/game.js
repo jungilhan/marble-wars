@@ -9,8 +9,9 @@ define(['view/gameView', 'model/marbles'], function(Game, Marbles) {
    */
   function start(mode, stage) {    
     params_.mode = mode;
-    params_.stage = stage;
+    params_.stage = stage;    
     params_.marbles = Marbles.get(mode, stage);
+    params_.totalStage = Marbles.getTotalStage(mode);
 
     Game.render(params_, {
       onagain: onagain_, 
@@ -103,20 +104,27 @@ define(['view/gameView', 'model/marbles'], function(Game, Marbles) {
   function onnext_() {
     switch (params_.mode) {
       case 'easy':
-        if (params_.stage < 15) {
+        if (params_.stage < params_.totalStage) {
           params_.stage = params_.stage + 1;
         } else {
           params_.mode = 'normal';
           params_.stage = 1;
+          params_.totalStage = Marbles.getTotalStage(params_.mode);
         }
         break;
       case 'normal':
-        if (params_.stage < 15) {
+        if (params_.stage < params_.totalStage) {
           params_.stage = params_.stage + 1;          
         } else {
-          // [TODO] Hard mode here
+          params_.mode = 'hard';
+          params_.stage = 1;
+          params_.totalStage = Marbles.getTotalStage(params_.mode); 
         }
-
+        break;
+      case 'hard':
+        if (params_.stage < params_.totalStage) {
+          params_.stage = params_.stage + 1;
+        }
         break; 
     }
 
@@ -138,7 +146,7 @@ define(['view/gameView', 'model/marbles'], function(Game, Marbles) {
       localStorage.highestStage = 1;
     }      
 
-    params_.marbles = Marbles.get(params_.mode, params_.stage);
+    params_.marbles = Marbles.get(params_.mode, params_.stage);    
 
     Game.render(params_, {
       onagain: onagain_, 

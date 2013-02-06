@@ -74,7 +74,7 @@ define(['config', 'lib/collie'], function(Config) {
     }).addTo(layer);
 
     var mode = 'menuNormalLock';
-    if (params.highestMode == 'normal') {
+    if (params.highestMode == 'normal' || params.highestMode == 'hard') {
       mode = 'menuNormal';
     }
     var normal = new collie.DisplayObject({
@@ -83,10 +83,14 @@ define(['config', 'lib/collie'], function(Config) {
       backgroundImage: mode
     }).addTo(layer);
 
+    mode = 'menuHardLock';
+    if (params.highestMode == 'hard') {
+      mode = 'menuHard';
+    }
     var hard = new collie.DisplayObject({
       x: 550,
       y: 170,
-      backgroundImage: 'menuHardLock'
+      backgroundImage: mode
     }).addTo(layer);
 
     var dim = new collie.DisplayObject({

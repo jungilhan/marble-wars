@@ -31,6 +31,9 @@ define(['view/stageView', 'controller/game'], function(Stage, Game) {
     if (mode == 'easy' && highestMode == 'normal') {
       isUnlocked = true;
 
+    } else if (mode == 'normal' && highestMode == 'hard') {
+      isUnlocked = true;
+
     } else if (stage > highestStage) {
       console.log('Stage is locked!');
       isUnlocked = false;
