@@ -1,4 +1,4 @@
-define(['controller/intro', 'lib/collie'], function(Intro) {
+define(['controller/intro', 'jquery', 'lib/collie'], function(Intro, $) {
   /** 
    * Application 시작 함수.
    */
@@ -10,7 +10,7 @@ define(['controller/intro', 'lib/collie'], function(Intro) {
    * 게임에서 사용하는 모든 이미지 리소스 등록
    */
   function prepareResource_() {
-    console.time('prepareResource_()');
+    //console.time('prepareResource_()');
     collie.ImageManager.add({
       // 공통 
       background: 'img/background.png',
@@ -70,7 +70,8 @@ define(['controller/intro', 'lib/collie'], function(Intro) {
       gameLosePopupAgain: 'img/again-big.png',
 
     }, function () {
-      console.timeEnd('prepareResource_()');
+      //console.timeEnd('prepareResource_()');
+      $('#loading').hide();
       Intro.start();
     });
   }

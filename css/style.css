@@ -11,3 +11,16 @@
   margin-top: 90px;
   margin-left: 95px;
 }
+
+#loading {  
+  position: absolute;
+  margin-left: 425px;  
+  margin-top: 310px;  
+}
+
+#loading > span {
+  margin-left: 5px;
+  color: #777777;
+  text-align: center;
+  text-shadow: 0 -1px 0 #ffffff;
+}
