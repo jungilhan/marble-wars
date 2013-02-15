@@ -415,7 +415,7 @@ define(['config', 'lib/collie'], function(Config) {
         if (callbacks_ != null && callbacks_.ongo != null) {
           callbacks_.ongo();
         }
-        
+
         displayObjects.go.set({
           backgroundImage: 'gameGoDown'
         })
@@ -542,7 +542,7 @@ define(['config', 'lib/collie'], function(Config) {
    * @param {Object} complete 이동 완료 콜백
    */
   function moveDelayed_(marble, from, to, delay, complete) {
-    setTimeout(function() {
+    setTimeout(function() {      
       move_(marble, from, to, function() {
         if (complete != null) {
           complete();
@@ -559,6 +559,10 @@ define(['config', 'lib/collie'], function(Config) {
    * @param {Object} complete 이동 완료 콜백
    */
   function move_(marble, from, to, complete) {
+    if (callbacks_ != null && callbacks_.onmove != null) {    
+      callbacks_.onmove();
+    }
+
     var width = marble.get('width');
     var height = marble.get('height');        
     var toMinX = to.getBoundary().left;

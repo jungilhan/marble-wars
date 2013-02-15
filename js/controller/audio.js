@@ -14,7 +14,8 @@ define(['lib/buffer-loader'], function(BufferLoarder) {
 
     if (context != null) {
       var bufferLoader = new BufferLoader(context, [
-        'sound/click.ogg'
+        'sound/click.ogg',
+        'sound/marble.ogg'
         ], 
         function(bufferList) {
           buffers = bufferList;
@@ -35,8 +36,10 @@ define(['lib/buffer-loader'], function(BufferLoarder) {
   /** 
    * 구슬 가져가기 효과음 재생
    */
-  function playTake() {
-
+  function playMarble() {
+    if (buffers != null) {
+      playSound(buffers[1]);
+    }
   }
 
   /** 
@@ -53,6 +56,6 @@ define(['lib/buffer-loader'], function(BufferLoarder) {
   return {
     init: init,
   	playButton: playButton,
-    playTake: playTake
+    playMarble: playMarble
   };
 });

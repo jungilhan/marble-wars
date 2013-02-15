@@ -16,6 +16,7 @@ define(['view/gameView', 'model/marbles', 'controller/audio'], function(Game, Ma
     Game.render(params_, {
       onagain: onagain_, 
       ongo: ongo_,
+      onmove: onmove_,
       onmachineturn: onmachineturn_,
       onnext: onnext_,
       onback: onback_
@@ -29,6 +30,7 @@ define(['view/gameView', 'model/marbles', 'controller/audio'], function(Game, Ma
     Game.render(params_, {
       onagain: onagain_, 
       ongo: ongo_,
+      onmove: onmove_,
       onmachineturn: onmachineturn_,
       onnext: onnext_,
       onback: onback_
@@ -40,6 +42,13 @@ define(['view/gameView', 'model/marbles', 'controller/audio'], function(Game, Ma
    */
   function ongo_() {
     Audio.playButton();
+  }
+
+  /** 
+   * 구슬 이동 콜백 함수.
+   */
+  function onmove_() {
+    Audio.playMarble();
   }
 
   /** 
@@ -151,6 +160,7 @@ define(['view/gameView', 'model/marbles', 'controller/audio'], function(Game, Ma
     Game.render(params_, {
       onagain: onagain_, 
       ongo: ongo_,
+      onmove: onmove_,
       onmachineturn: onmachineturn_,
       onnext: onnext_,
       onback: onback_
