@@ -1,4 +1,4 @@
-define(['controller/intro', 'jquery', 'lib/collie'], function(Intro, $) {
+define(['controller/intro', 'controller/audio', 'jquery', 'lib/collie'], function(Intro, Audio, $) {
   /** 
    * Application 시작 함수.
    */
@@ -72,6 +72,7 @@ define(['controller/intro', 'jquery', 'lib/collie'], function(Intro, $) {
     }, function () {
       //console.timeEnd('prepareResource_()');
       $('#loading').hide();
+      Audio.init();
       Intro.start();
     });
   }
