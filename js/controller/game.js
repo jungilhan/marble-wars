@@ -39,7 +39,7 @@ define(['view/gameView', 'model/marbles', 'controller/audio'], function(Game, Ma
    * go 버튼 콜백 함수.
    */
   function ongo_() {
-    
+    Audio.playButton();
   }
 
   /** 
@@ -49,9 +49,7 @@ define(['view/gameView', 'model/marbles', 'controller/audio'], function(Game, Ma
    *                  marble 구슬 개수
    *                  null이면 사용자가 승리한 것을 의미한다.
    */
-  function onmachineturn_(marbles) {
-    Audio.playButton();
-    
+  function onmachineturn_(marbles) {    
     if (marbles[0] + marbles[1] + marbles[2] == 1) {
       return null;
     }

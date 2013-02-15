@@ -412,6 +412,10 @@ define(['config', 'lib/collie'], function(Config) {
 
     displayObjects.go.attach({
       mousedown: function(e) {
+        if (callbacks_ != null && callbacks_.ongo != null) {
+          callbacks_.ongo();
+        }
+        
         displayObjects.go.set({
           backgroundImage: 'gameGoDown'
         })
@@ -425,10 +429,6 @@ define(['config', 'lib/collie'], function(Config) {
           return;        
 
         if (takeUser_(displayObjects.userChest)) {
-          if (callbacks_ != null && callbacks_.ongo != null) {
-            callbacks_.ongo();
-          }
-
           isMachineTurn_ = true;
           setTimeout(function() {
             if (callbacks_ != null && callbacks_.onmachineturn != null) {              

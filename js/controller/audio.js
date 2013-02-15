@@ -27,8 +27,8 @@ define(['lib/buffer-loader'], function(BufferLoarder) {
    * 버튼 클릭 효과음 재생
    */
   function playButton() {
-    if (buffer != null) {
-      playSound(buffer[0]);
+    if (buffers != null) {
+      playSound(buffers[0]);
     }
   }
 
