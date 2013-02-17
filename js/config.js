@@ -1,4 +1,4 @@
-define([], function() {
+define([], function() {  
   function width() {
     return 800;
   }
