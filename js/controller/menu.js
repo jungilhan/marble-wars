@@ -38,7 +38,7 @@ define(['view/menuView', 'controller/stage', 'controller/audio', 'model/effects'
    * Easy 게임 버튼 콜백 함수.
    */
   function oneasy_() {
-    Audio.playButton();
+    //Audio.playButton();
 
     localStorage.mode = 'easy';
     Stage.start();
@@ -47,9 +47,7 @@ define(['view/menuView', 'controller/stage', 'controller/audio', 'model/effects'
   /** 
    * Normal 게임 버튼 콜백 함수.
    */
-  function onnormal_() {
-    Audio.playButton();
-
+  function onnormal_() {    
     var highestMode = localStorage.getItem('highestMode');
     var isUnlocked = true;
 
@@ -59,6 +57,8 @@ define(['view/menuView', 'controller/stage', 'controller/audio', 'model/effects'
     }
     
     if (isUnlocked) {
+      //Audio.playButton();
+
       localStorage.mode = 'normal';
       Stage.start();
     }
@@ -69,9 +69,7 @@ define(['view/menuView', 'controller/stage', 'controller/audio', 'model/effects'
   /** 
    * Hard 게임 버튼 콜백 함수.
    */
-  function onhard_() {
-    Audio.playButton();
-
+  function onhard_() {    
     var highestMode = localStorage.getItem('highestMode');
     var isUnlocked = true;
 
@@ -80,7 +78,9 @@ define(['view/menuView', 'controller/stage', 'controller/audio', 'model/effects'
       isUnlocked = false;
     }
     
-    if (isUnlocked) {      
+    if (isUnlocked) {     
+      //Audio.playButton();
+
       localStorage.mode = 'hard';
       Stage.start();
     }
