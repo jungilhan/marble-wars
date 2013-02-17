@@ -38,6 +38,7 @@ define(['controller/intro', 'controller/audio', 'jquery', 'lib/collie'], functio
 
       // 세부 메뉴 
       stageBackground: 'img/mini-background.png',
+      stageBack: 'img/mini-backbutton.png',
       stageEasy: 'img/mini-easy.png',
       stageNormal: 'img/mini-normal.png',
       stageHard: 'img/mini-hard.png',
@@ -55,7 +56,7 @@ define(['controller/intro', 'controller/audio', 'jquery', 'lib/collie'], functio
       stageLock: 'img/stage-lock.png',
 
       // 게임 화면
-      gameBackground: 'img/game-background2.png',
+      gameBackground: 'img/game-background.png',
       gameMarble: 'img/marble.png',
       gameGoNormal: 'img/go.png',
       gameGoDown: 'img/go-down.png',

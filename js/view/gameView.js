@@ -143,19 +143,20 @@ define(['config', 'lib/collie'], function(Config) {
 
     var mode = new collie.DisplayObject({
       x: 10,
-      y: 0,
+      y: 10,
       backgroundImage: gameMode
     }).addTo(layer);
 
     var stage = new collie.Text({
       width : 50,
       height : 20,
-      x: 120,
-      y: 15,
-      fontColor : '#FFF',
+      x: gameMode == 'gameNormal' ? 125 : 110,
+      y: 15, 
+      fontColor : 'black',
       fontSize: 20,
+      fontWeight: 'bold',
       textAlign: 'center'
-    }).text(params.stage + '/' + params.totalStage).addTo(layer);
+    }).text(params.stage + '/' + params.totalStage).addTo(mode);
 
     var again = new collie.DisplayObject({
       x: right.get('x') + 5,

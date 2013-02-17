@@ -43,19 +43,25 @@ define(['config', 'lib/collie'], function(Config) {
       backgroundImage: 'stageBackground'
     }).addTo(layer);
 
-    var modeImage = '';
+    var title = '';
     if (params_.mode == 'easy') {
-      modeImage = 'stageEasy';
+      title = 'stageEasy';
     } else if (params_.mode == 'normal') {
-      modeImage = 'stageNormal';
+      title = 'stageNormal';
     } else {
-      modeImage = 'stageHard';
+      title = 'stageHard';
     }
 
     var mode = new collie.DisplayObject({
-      x: 0,
+      x: 10,
+      y: 10,
+      backgroundImage: 'stageBack'
+    }).addTo(layer);
+
+    var title = new collie.DisplayObject({
+      x: 'center',
       y: 0,
-      backgroundImage: modeImage,
+      backgroundImage: title,
       strokeColor: 'white',
       strokeWidth: 1
     }).addTo(layer);

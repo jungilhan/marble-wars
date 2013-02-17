@@ -129,7 +129,7 @@ define(['config', 'lib/collie'], function(Config) {
       to: width_
     });
 
-    hide.add(2300, 'transition', displayObjects.marbleLarge, 500, {
+    hide.add(2100, 'transition', displayObjects.marbleLarge, 500, {
       effect: collie.Effect.easeOut,
       set: 'x',
       to: width_
