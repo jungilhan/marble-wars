@@ -1,4 +1,4 @@
-define(['view/menuView', 'controller/stage', 'controller/Audio', 'model/effects'], function(Menu, Stage, Audio, Effects) {
+define(['view/menuView', 'controller/stage', 'controller/audio', 'model/effects'], function(Menu, Stage, Audio, Effects) {
   /** 
    * 메뉴 시작 함수.
    */
@@ -71,7 +71,7 @@ define(['view/menuView', 'controller/stage', 'controller/Audio', 'model/effects'
    */
   function onhard_() {
     Audio.playButton();
-    
+
     var highestMode = localStorage.getItem('highestMode');
     var isUnlocked = true;
 
