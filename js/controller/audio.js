@@ -1,4 +1,4 @@
-define(['lib/buffer-loader'], function(BufferLoarder) {
+define(['lib/buffer-loader', 'model/effects'], function(BufferLoarder, Effects) {
   var context = null;
   var buffers = null;
 
@@ -28,7 +28,7 @@ define(['lib/buffer-loader'], function(BufferLoarder) {
    * 버튼 클릭 효과음 재생
    */
   function playButton() {
-    if (buffers != null) {
+    if (buffers != null && isEffectsEnabled()) {
       playSound(buffers[0]);
     }
   }
@@ -37,7 +37,7 @@ define(['lib/buffer-loader'], function(BufferLoarder) {
    * 구슬 가져가기 효과음 재생
    */
   function playMarble() {
-    if (buffers != null) {
+    if (buffers != null && isEffectsEnabled()) {
       playSound(buffers[1]);
     }
   }
@@ -53,9 +53,19 @@ define(['lib/buffer-loader'], function(BufferLoarder) {
     source.noteOn(0);
   }
 
+  /** 
+   * 효과음 활성화 여부를 반환한다.
+   * @return 활성화 여부
+   */
+  function isEffectsEnabled() {
+    var enable = Effects.isEnabled();
+    return enable;
+  }
+
   return {
     init: init,
   	playButton: playButton,
-    playMarble: playMarble
+    playMarble: playMarble,
+    isEffectsEnabled: isEffectsEnabled
   };
 });

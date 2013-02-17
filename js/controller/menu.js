@@ -1,4 +1,4 @@
-define(['view/menuView', 'controller/stage'], function(Menu, Stage) {
+define(['view/menuView', 'controller/stage', 'model/effects'], function(Menu, Stage, Effects) {
   /** 
    * 메뉴 시작 함수.
    */
@@ -20,13 +20,17 @@ define(['view/menuView', 'controller/stage'], function(Menu, Stage) {
       localStorage.highestMode = 'easy';
     }
 
+    var effects = Effects.isEnabled();
+
     Menu.render({
       highestStage: highestStage, 
-      highestMode: highestMode
+      highestMode: highestMode,
+      effects: effects
     }, {
       oneasy: oneasy_,
       onnormal: onnormal_, 
-      onhard: onhard_
+      onhard: onhard_,
+      oneffects: oneffects_
     });
   }
 
@@ -76,6 +80,17 @@ define(['view/menuView', 'controller/stage'], function(Menu, Stage) {
     }
 
     return isUnlocked;
+  }
+
+  /** 
+   * 효과음 On/Off 콜백 함수.
+   */
+  function oneffects_() {
+    var enable = Effects.isEnabled();
+    enable = !enable;
+    Effects.set(enable);
+
+    return enable;
   }
 
   return {

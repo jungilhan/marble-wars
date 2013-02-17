@@ -35,6 +35,9 @@ define(['controller/intro', 'controller/audio', 'jquery', 'lib/collie'], functio
       menuRule1: 'img/rule1.png',
       menuRule2: 'img/rule2.png',
       menuRule3: 'img/rule3.png',
+      menuSettingsBg: 'img/settings-background.png',
+      menuSettingsSoundOn: 'img/settings-sound-on.png',
+      menuSettingsSoundOff: 'img/settings-sound-off.png',
 
       // 세부 메뉴 
       stageBackground: 'img/mini-background.png',

@@ -140,6 +140,55 @@ define(['config', 'lib/collie'], function(Config) {
       rulePopups.push(popup);
     }
 
+    var settingsPopup = new collie.DisplayObject({
+        x: (width_ - 554) / 2,
+        y: (height_ - 433) / 2,
+        backgroundImage: 'menuSettingsBg',
+        visible: false
+    }).addTo(layer);
+
+    var settingsClose = new collie.Rectangle({
+      x: 490,
+      y: 10,
+      width: 60,
+      height: 60,
+      strokeColor: 'white',
+      strokeWidth: 0,
+      visible: false
+    }).addTo(settingsPopup);
+
+    var effects = new collie.Rectangle({
+      x: 130,
+      y: 150,
+      width: 300,
+      height: 60,
+      strokeColor: 'black',
+      strokeWidth: 0,
+      visible: false
+    }).addTo(settingsPopup);
+
+    new collie.Text({
+      width : 100,
+      height : 50,
+      x : 30,
+      y : 10,
+      fontColor : 'black',
+      fontSize: 32,
+      fontWeight: 'bold',
+    }).text('효과음').addTo(effects);
+    
+    var effectsIcon = new collie.DisplayObject({
+      x: 220,
+      y: 0,
+      backgroundImage: params.effects == true ? 'menuSettingsSoundOn' : 'menuSettingsSoundOff'
+    }).addTo(effects);
+
+    settingsPopup.set({
+      close: close,
+      effects: effects,
+      icon: effectsIcon
+    });
+
     return {
       rule: rule,
       settings: settings,
@@ -148,7 +197,8 @@ define(['config', 'lib/collie'], function(Config) {
       normal: normal,
       hard: hard,
       dim: dim,
-      rulePopups: rulePopups
+      rulePopups: rulePopups,
+      settingsPopup: settingsPopup
     };
   }
 
@@ -179,12 +229,41 @@ define(['config', 'lib/collie'], function(Config) {
           nextRule_(displayObjects, e.displayObject.getParent().get('index'));
         }
       });
-
     }
 
     displayObjects.settings.attach({
       click: function(e) {
         console.log('settings clicked'); 
+        showSettingsPopup_(displayObjects);
+      }
+    });
+
+    displayObjects.settingsPopup.get('close').attach({
+      click: function(e) {
+        hideSettingsPopup_(displayObjects);
+      }
+    });
+
+    var effects = displayObjects.settingsPopup.get('effects')    
+    effects.attach({
+      click: function(e) {
+        console.log('effects clicked');
+
+        var enable = true;
+        if (callbacks_ != null && callbacks_.oneffects != null) {
+          enable = callbacks_.oneffects();
+        }
+
+        var icon = displayObjects.settingsPopup.get('icon');
+        if (enable) {
+          icon.set({
+            backgroundImage: 'menuSettingsSoundOn'
+          });
+        } else {
+          icon.set({
+            backgroundImage: 'menuSettingsSoundOff'
+          });
+        }
       }
     });
 
@@ -227,7 +306,7 @@ define(['config', 'lib/collie'], function(Config) {
       click: function(e) {
         // Dim 아래에 있는 객체에 클릭 이벤트가 전달되지 않도록 Dim에서 클릭 이벤트를 소진한다.
       }
-    })
+    });
   }
 
   /** 
@@ -296,8 +375,30 @@ define(['config', 'lib/collie'], function(Config) {
   function hideRulePopup_(rulePopup) {
     rulePopup.set({visible: false});
     rulePopup.get('close').set({visible: false});    
-    rulePopup.get('next').set({visible: false});      
+    rulePopup.get('next').set({visible: false});
   }
+
+  /** 
+   * 설정 팝업을 띄운다.
+   * @param {Object} displayObjects 화면에 보여지는 객체 집합
+   */
+  function showSettingsPopup_(displayObjects) {
+    displayObjects.dim.set({visible: true});
+    displayObjects.settingsPopup.set({visible: true});
+    displayObjects.settingsPopup.get('close').set({visible: true});
+    displayObjects.settingsPopup.get('effects').set({visible: true});
+  } 
+  
+  /** 
+   * 설정 팝업을 닫는다.
+   * @param {Object} displayObjects 화면에 보여지는 객체 집합
+   */
+  function hideSettingsPopup_(displayObjects) {
+    displayObjects.dim.set({visible: false});
+    displayObjects.settingsPopup.set({visible: false});
+    displayObjects.settingsPopup.get('close').set({visible: false});
+    displayObjects.settingsPopup.get('effects').set({visible: false});
+  } 
 
   /** 
    * 객체에 대한 모든 이벤트를 해지한다.
