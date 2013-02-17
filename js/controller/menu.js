@@ -1,4 +1,4 @@
-define(['view/menuView', 'controller/stage', 'model/effects'], function(Menu, Stage, Effects) {
+define(['view/menuView', 'controller/stage', 'controller/Audio', 'model/effects'], function(Menu, Stage, Audio, Effects) {
   /** 
    * 메뉴 시작 함수.
    */
@@ -38,6 +38,8 @@ define(['view/menuView', 'controller/stage', 'model/effects'], function(Menu, St
    * Easy 게임 버튼 콜백 함수.
    */
   function oneasy_() {
+    Audio.playButton();
+
     localStorage.mode = 'easy';
     Stage.start();
   }
@@ -46,6 +48,8 @@ define(['view/menuView', 'controller/stage', 'model/effects'], function(Menu, St
    * Normal 게임 버튼 콜백 함수.
    */
   function onnormal_() {
+    Audio.playButton();
+
     var highestMode = localStorage.getItem('highestMode');
     var isUnlocked = true;
 
@@ -66,6 +70,8 @@ define(['view/menuView', 'controller/stage', 'model/effects'], function(Menu, St
    * Hard 게임 버튼 콜백 함수.
    */
   function onhard_() {
+    Audio.playButton();
+    
     var highestMode = localStorage.getItem('highestMode');
     var isUnlocked = true;
 
