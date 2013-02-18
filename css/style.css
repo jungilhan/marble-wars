@@ -28,3 +28,7 @@
 #market-banner {
   margin-left: 30px;
 }
+
+#market-banner > p {
+  margin-top: 5px;
+}
