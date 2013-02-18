@@ -28,7 +28,8 @@ define(['view/stageView', 'controller/game'], function(Stage, Game) {
     var highestStage = localStorage.getItem('highestStage');
     var isUnlocked = true;
 
-    if (mode == 'easy' && highestMode == 'normal') {
+    if (mode == 'easy' && 
+      (highestMode == 'normal' || highestMode == 'hard')) {
       isUnlocked = true;
 
     } else if (mode == 'normal' && highestMode == 'hard') {
