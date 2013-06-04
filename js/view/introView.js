@@ -141,6 +141,15 @@ define(['config', 'lib/collie'], function(Config) {
 
       if (oncomplete_) {
         oncomplete_();
+
+        delete displayObjects.title;
+        delete displayObjects.marbleSmallLeft;
+        delete displayObjects.marbleSmallRight;
+        delete displayObjects.marbleLarge;
+
+        for (var object in displayObjects) {
+          console.log(object);
+        }
       }
     }, 500);
   }
