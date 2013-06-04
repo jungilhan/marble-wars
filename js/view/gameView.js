@@ -159,7 +159,7 @@ define(['config', 'lib/collie'], function(Config) {
     }).text(params.stage + '/' + params.totalStage).addTo(mode);
 
     var again = new collie.DisplayObject({
-      x: right.get('x') + 5,
+      x: right.get('x') + 30,
       y: 10,
       backgroundImage: 'gameAgain'
     }).addTo(layer);
@@ -180,6 +180,7 @@ define(['config', 'lib/collie'], function(Config) {
       visible: false
     }).addTo(layer);
 
+    /*
     var winMessage = new collie.Text({
       x : 0,
       y : 170,
@@ -190,6 +191,7 @@ define(['config', 'lib/collie'], function(Config) {
       fontWeight: 'bold',
       textAlign: 'center'
     }).text('당신이 이겼습니다!').addTo(winPopup);
+    */
 
     var winPopupAgain = new collie.DisplayObject({
       x: 90,
@@ -212,6 +214,7 @@ define(['config', 'lib/collie'], function(Config) {
       visible: false
     }).addTo(layer);
 
+    /*
     var loseMessage = new collie.Text({
       x : 0,
       y : 170,
@@ -222,6 +225,7 @@ define(['config', 'lib/collie'], function(Config) {
       fontWeight: 'bold',
       textAlign: 'center'
     }).text('당신이 졌습니다!').addTo(losePopup);
+    */
 
     var losePopupAgain = new collie.DisplayObject({
       x: (554 - 230) / 2,

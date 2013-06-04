@@ -41,7 +41,7 @@ define(['config', 'lib/collie'], function(Config) {
     }).addTo(layer);
 
     new collie.DisplayObject({
-      x: (width_ / 2) - (182 / 2),
+      x: (width_ / 2) - (236 / 2),
       y: 420,
       backgroundImage: 'introCopyright'
     }).addTo(layer);

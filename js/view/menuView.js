@@ -175,7 +175,7 @@ define(['config', 'lib/collie'], function(Config) {
       fontColor : 'black',
       fontSize: 32,
       fontWeight: 'bold',
-    }).text('효과음').addTo(effects);
+    }).text('Sound').addTo(effects);
     
     var effectsIcon = new collie.DisplayObject({
       x: 220,
